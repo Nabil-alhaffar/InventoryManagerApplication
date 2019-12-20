@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryManager.Views.PastOrdersDetailPage"
+             Title="{Binding OrderId, StringFormat='Order ID : {0}'}" >
+
+    <ContentPage.Content>
+        <StackLayout>
+        <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding Order.OrderItems}"
+                VerticalOptions="FillAndExpand"
+                SeparatorColor="#640689"
+                HasUnevenRows="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                >
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding ProductId,StringFormat='Product ID : {0}'}" 
+                                
+                                TextColor="#ea0a8e"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Label Text="{Binding Quantity, ,StringFormat='Quantity : {0}'}" 
+                                TextColor="#ea0a8e"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

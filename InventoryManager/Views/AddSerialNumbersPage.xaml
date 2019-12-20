@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryManager.Views.AddSerialNumbersPage"
+             Title="Add Serial Numbers"
+              xmlns:viewmodels="clr-namespace:InventoryManager.ViewModels"
+             xmlns:views="clr-namespace:InventoryManager.Views"
+             >
+    <ContentPage.BindingContext>
+        <viewmodels:AdjustSerialNumbersViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+           
+        <ListView x:Name="SerialNumbersListView"
+                ItemsSource="{Binding SerialNumbers}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                  SeparatorColor="#ea0a8e"
+                RefreshCommand="{Binding GetSerialFieldsCommand}"
+                SeparatorVisibility="Default"
+                CachingStrategy="RecycleElement"
+               >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                       <StackLayout  Orientation="Horizontal"  Padding="5" HorizontalOptions="Fill">
+                         <Label Text="{Binding SerialNumber.ProductId, StringFormat='{0}'}" TextColor="#ea0a8e"  />
+                         <Entry Text="{Binding SerialNumber.SerialNumberValue}"  Placeholder="IMEI number" IsEnabled="True" PlaceholderColor="#ea0a8e" TextColor="#ea0a8e" MaxLength="15" Keyboard="Numeric" WidthRequest="140"/>
+                         </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+             <Button Text="Cancel" Clicked="OnCancelClicked" TextColor="White" BackgroundColor="Red" />
+            <Button Text="Post SerialNumbers" Clicked="OnPostSerialNumbersClicked" TextColor="White" BackgroundColor="Green"/>
+
+                </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

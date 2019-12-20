@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryManager.Views.AddUserPage"
+             xmlns:viewmodels="clr-namespace:InventoryManager.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodels:AddUserViewModel/>
+    </ContentPage.BindingContext>
+   
+    <ContentPage.Content>
+        
+        <StackLayout Orientation="Vertical">
+            <Label Text="Add a new User:" TextColor="Purple" FontSize="Header" HorizontalOptions="Center"/>
+            <Entry Text="{Binding User.FirstName}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="First Name"/>
+            <Entry Text="{Binding User.LastName}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="Last Name"/>
+            <Entry Text="{Binding User.StreetAddress}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="Street address"/>
+            <Entry Text="{Binding User.City}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="City"/>
+            <!--<Picker ItemsSource="{Binding}"/>-->
+            <Entry Text="{Binding User.ZipCode}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="Zip Code"/>
+            <DatePicker Date="{Binding User.DateOfBirth}" TextColor="MediumPurple" /> 
+            <!--<Entry Text="{Binding DateOfBirth}" Placeholder="Date of Birth"/>-->
+            <Entry Text="{Binding User.Email}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="Email Address"/>
+            <Entry Text="{Binding User.Username}" TextColor= "Purple" PlaceholderColor="MediumPurple"
+                   Placeholder="Username"/>
+            <Entry Text="{Binding Password}" TextColor = "Purple" PlaceholderColor ="MediumPurple"
+                   Placeholder="Password"/>
+             <Picker SelectedIndex="0"  x:Name="UserTypePicker" Title="Select an accessory type" TitleColor="MediumPurple">
+                <Picker.ItemsSource Title="Select Accessory Type" TitleColor="Purple" >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Sales Associate</x:String>
+                        <x:String>Store Manager</x:String>
+                        <x:String>District Manager</x:String>
+                        <x:String>Admin</x:String>
+
+                    </x:Array>
+                 </Picker.ItemsSource>
+                 </Picker>
+             <Picker SelectedIndex="0" SelectedItem="{Binding User.UserType}"  x:Name="MainStorePicker" Title="Select Main Store" TitleColor="MediumPurple">
+                <Picker.ItemsSource Title="Select Accessory Type" TitleColor="Purple" >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Greenriver</x:String>
+                        <x:String>Morgan</x:String>
+                        <x:String>Simpsons</x:String>
+                        <x:String>Weinbach</x:String>
+                        <x:String>Frederica</x:String>
+             
+                    </x:Array>
+                 </Picker.ItemsSource>
+                 </Picker>
+            <Label Text="Is User Currently Active?" FontSize="Medium" TextColor="Purple"/>
+
+            <Switch IsToggled="{Binding User.IsActive}" />
+            <Button Text="Register" Command="{Binding LoginCommand}" TextColor="MediumPurple"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

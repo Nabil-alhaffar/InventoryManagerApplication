@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="InventoryManager.Views.AddNewProductPage"
+             Title="Add New Product">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="OnCancelClicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout x:Name="mainStackView" BackgroundColor = "White" Spacing= "15" Margin="15,40,15,10" HorizontalOptions="FillAndExpand" >
+                <Label Text="Please enter the new product information:" TextColor="#640689" HorizontalOptions="Center" FontSize="Header" />
+                <Entry Placeholder="UPC:" Text="{Binding Product.UPC}" HorizontalOptions="StartAndExpand"  TextColor = "#640689" PlaceholderColor="#ea0a8e" WidthRequest="200" />
+                <Entry Placeholder="Name:" Text="{Binding Product.Name}" HorizontalOptions="Start" TextColor= "#640689" PlaceholderColor="#ea0a8e" WidthRequest="200"/>
+                 <Picker SelectedItem= "{Binding Product.ProductType}" SelectedIndexChanged="SelectedIndexChanged" x:Name="itemTypePicker" Title="Select Product Type" TitleColor="#ea0a8e">
+                <Picker.ItemsSource Title="Select Product Type" TitleColor="#640689" >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Phone</x:String>
+                         <x:String>Accessory</x:String>
+                    </x:Array>
+                 </Picker.ItemsSource>
+                 </Picker>
+                
+                 <Entry Placeholder="Cost:" Text="{Binding Product.Cost}" HorizontalOptions="Start" TextColor= "Purple" PlaceholderColor="#ea0a8e" WidthRequest="200" />
+                 <Entry Placeholder="Full Retail Price" Text="{Binding Product.FullRetailPrice}" HorizontalOptions="Start" TextColor= "#640689" PlaceholderColor="#ea0a8e" WidthRequest="200"/>
+                 <Entry Placeholder="Minimum Set Price" Text="{Binding Product.MinimumSetPrice}" HorizontalOptions="Start" TextColor= "#640689" PlaceholderColor="#ea0a8e" WidthRequest="200"/>
+                <StackLayout  x:Name="phoneItemStackView">
+               
+                <Entry Placeholder="Device Manufacturer:" Text="{Binding Product.Manufacturer}" HorizontalOptions="Start" TextColor= "#640689" PlaceholderColor="#ea0a8e" WidthRequest="200"/>
+                <!--<Entry Placeholder="Device Model:" Text="{Binding Product.Model}" HorizontalOptions="Start" TextColor="Gray"/>-->
+                <!--<Entry Placeholder="Full Retail Price" Text="{Binding Item.FullRetailPrice}" HorizontalOptions="Start" TextColor="Gray"/>-->
+                 </StackLayout>
+            <StackLayout  x:Name="accessoryItemStackView" IsVisible="true">
+             <!--<Label Text="Add a new Accessory Item:" HorizontalOptions="Center" TextColor="Gray" FontSize="Large"/>-->
+             <Picker  SelectedItem="{Binding Product.AccessoryItemType}" x:Name="accessoryTypePicker" Title="Select an accessory type" TitleColor="#ea0a8e">
+                <Picker.ItemsSource Title="Select Accessory Type" TitleColor="#ea0a8e" >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Protective Case</x:String>
+                        <x:String>Screen Protector</x:String>
+                        <x:String>Bluetooth Speakers</x:String>
+                        <x:String>Storage</x:String>
+                        <x:String>Bluetooth Headphones</x:String>
+                        <x:String>Earbuds</x:String>
+                        <x:String>Charging Cables</x:String>
+                        <x:String>Power banks</x:String>
+                        <x:String>Miscellaneous</x:String>
+                    </x:Array>
+                 </Picker.ItemsSource>
+                 </Picker>
+            </StackLayout>
+                <StackLayout  Orientation="Horizontal" Spacing="20">
+                  <Label Text="Is Product Currently Active?" FontSize="Medium" TextColor="#640689"/>
+                  <Switch IsToggled="{Binding Product.IsActive}" OnColor="#ea0a8e" ThumbColor="#640689"/>
+                    </StackLayout>
+                 <Button x:Name="SaveBtn" HorizontalOptions="Center" Text="Add Product" FontSize="Medium" Clicked="OnSaveClicked" TextColor="White" BackgroundColor="Purple" WidthRequest="100" BorderColor="#ea0a8e"/>
+
+         </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

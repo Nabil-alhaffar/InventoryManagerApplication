@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryManager.Views.PurchaseOrderPage"
+             xmlns:viewmodels="clr-namespace:InventoryManager.ViewModels"
+             xmlns:views="clr-namespace:InventoryManager.Views"
+             Title="Purchase Order Document"
+             >
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="OnAddStocksClicked" />
+    </ContentPage.ToolbarItems>
+
+        <ContentPage.BindingContext>
+        <viewmodels:PurchaseOrderViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+        <Label Text="Fill out the current document " HorizontalOptions="Center" FontSize="Header" TextColor="#640689"/>
+        <ListView x:Name="StocksListView"
+                ItemsSource="{Binding Stocks}"
+                VerticalOptions="FillAndExpand"
+                SeparatorColor="#ea0a8e"
+                HasUnevenRows="true"
+                IsPullToRefreshEnabled="False"
+                SeparatorVisibility="Default"
+                CachingStrategy="RecycleElement">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                       <StackLayout  Orientation="Horizontal" >
+                         <Entry Text="{Binding Stock.ProductId}"  Placeholder="Product Id"  x:Name="productIdEntry" PlaceholderColor="#ea0a8e" TextColor="#640689"/>
+                         <Entry Text="{Binding Stock.StoreId}"   IsEnabled="False" TextColor="#640689"/>
+                         <Entry Text="{Binding  Source={x:Reference quantityStepper}, Path=Value, StringFormat='{0}'}" Placeholder="Quantity"   />
+                         <Stepper x:Name="quantityStepper"   Maximum="360" Increment="1"  HorizontalOptions="Center" Value="{Binding Stock.Quantity}" BackgroundColor="#640689"/>
+                         </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand">
+            <Button Text="Cancel"  Clicked="OnCancelClicked" TextColor="White" BackgroundColor="Red"/>
+            <Button Text="Post Stocks" Clicked="OnPostStocksClicked" TextColor="White" BackgroundColor="Green"/>
+
+
+                </StackLayout>
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="InventoryManager.Views.NewProductPage"
+             Title="New Product">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="OnCancelClicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout x:Name="mainStackView" BackgroundColor="Purple">
+                <Entry Placeholder="UPC:" Text="{Binding Item.UPC}" HorizontalOptions="Start" TextColor= "Gray"/>
+                 <Picker SelectedIndex="0" SelectedIndexChanged="SelectedIndexChanged" x:Name="itemTypePicker">
+                <Picker.ItemsSource Title="Select Item Type" TitleColor="blue" >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Phone</x:String>
+                         <x:String>Accessory</x:String>
+                    </x:Array>
+                 </Picker.ItemsSource>
+                 </Picker>
+                <StackLayout BackgroundColor="Purple" x:Name="phoneItemStackView">
+                <Label Text="Add a new Phone Item:" HorizontalOptions="Center" TextColor="Gray"/>
+                <Entry Placeholder="Device Make:" Text="{Binding Item.Make}" HorizontalOptions="Start" TextColor="Gray"/>
+                <Entry Placeholder="Device Model:" Text="{Binding Item.Model}" HorizontalOptions="Start" TextColor="Gray"/>
+                <Entry Placeholder="IMEI: " Text="{Binding Item.IMEInumber}" HorizontalOptions="Start" TextColor="Gray"/>
+                 </StackLayout>
+            <StackLayout BackgroundColor="MediumPurple" x:Name="accessoryItemStackView">
+             <Label Text="Add a new Accessory Item:" HorizontalOptions="Center" TextColor="Gray" FontSize="Large"/>
+             <Picker SelectedIndex="0" SelectedIndexChanged="SelectedIndexChanged" x:Name="accessoryTypePicker">
+                <Picker.ItemsSource Title="Select Accessory Type" TitleColor="blue" >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Protective Case</x:String>
+                        <x:String>Screen Protector</x:String>
+                        <x:String>Bluetooth Speakers</x:String>
+                        <x:String>Storage</x:String>
+                        <x:String>Bluetooth Headphones</x:String>
+                        <x:String>Earbuds</x:String>
+                        <x:String>Charging Cables</x:String>
+                        <x:String>Power banks</x:String>
+                        <x:String>Miscellaneous</x:String>
+                    </x:Array>
+                 </Picker.ItemsSource>
+                 </Picker>
+            </StackLayout>
+                  <Entry Placeholder="Minimum Set Price" Text="{Binding Item.MinimumSetPrice}" HorizontalOptions="Start" TextColor="Gray"/>
+                  <Label Text="Is Item Currently Active?" FontSize="Medium"/>
+                 <CheckBox x:Name="IsActive"  HorizontalOptions="Center" IsChecked="{Binding Item.IsActive}" />
+                 <Entry Placeholder="Cost:" Text="{Binding Item.Cost}" HorizontalOptions="Start" TextColor="Gray"/>
+                 <Button x:Name="SaveBtn" HorizontalOptions="Center" Text="Save" FontSize="Medium" Clicked="OnSaveClicked"/>
+
+         </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

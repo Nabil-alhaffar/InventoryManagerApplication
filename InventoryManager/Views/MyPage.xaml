@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="InventoryManager.Views.ProductManagerPage"
+             Title="{Binding Title}">
+<ScrollView
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text= "Text:" FontSize="Medium" />
+        <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small"/>
+        <Label Text="Item Type:" FontSize = "Medium"/>
+        <Picker d:Title="Item Type" ItemsSource="Items" FontSize="Small" SelectedItem=""/>
+        <Label d:Text="UPC code:" FontSize="Medium" />
+        <Label Text="{Binding Item.UPC}" d:Text="Phone's UPC code:" FontSize="Small"/>
+        <Label Text="Device make:" FontSize="Medium"/>
+        <Label Text ="{Binding Item.Make}" d:Text = "Device Make"/>
+        <Label Text = "Device Model:" FontSize="Medium"/>
+        <Label Text = "{Binding Item.Model}" FontSize = "Small"/>
+        <Label Text= "Full Retail Price:" FontSize= "Medium" />
+        <Label Text= "{Binding Item.FullRetailPrice}" FontSize="Small" />
+        <Label Text= "Cost:" FontSize= "Medium" />
+        <Label Text= "{Binding Item.Cost}" FontSize="Small" />
+        <Label Text= "Minimum Set Price" FontSize= "Medium" />
+        <Label Text= "{Binding Item.MinimumSetPrice}" FontSize="Small" />
+        <Label Text="Description:" FontSize="Medium"  />
+        <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
+    </StackLayout>
+</ScrollView>
+
+</ContentPage>

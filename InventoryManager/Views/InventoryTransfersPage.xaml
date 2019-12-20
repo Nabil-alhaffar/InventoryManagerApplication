@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryManager.Views.InventoryTransfersPage"
+             Title="Inventory Transfers"
+             >
+    <ContentPage.Content>
+
+           <Grid Padding="20" VerticalOptions="StartAndExpand" Margin="10,40,10,10"  >
+      <Grid.RowDefinitions>
+
+         <RowDefinition Height="20" />
+         <RowDefinition Height="100" />
+
+       </Grid.RowDefinitions>
+        
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="5*" />
+        <ColumnDefinition Width="5*" />
+      </Grid.ColumnDefinitions>
+    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan= "2" HorizontalOptions="FillAndExpand" Text="Please choose one of the current operations" TextColor="#640689"  FontSize="Header" />
+     <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" Text="Ship Stocks" Clicked="OnShipStocksClicked" BackgroundColor="#640689" TextColor="#ea0a8e"/>
+     <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Grid.RowSpan="2"  HorizontalOptions="FillAndExpand" x:Name="ReceiveOrder" Text="Receive Order" Clicked="OnReceivePurchuseOrder" BackgroundColor="#640689" TextColor="#ea0a8e"/>
+    
+</Grid>
+    </ContentPage.Content>
+</ContentPage>

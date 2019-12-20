@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="InventoryManager.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15" HorizontalOptions="StartAndExpand">
+        <StackLayout x:Name="GeneralStackView" Orientation="Vertical"  IsVisible="true">
+        <Label Text="Name:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.Name}" FontSize="Small" TextColor="#640689"/>
+        <Label Text="UPC:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.UPC}"  FontSize="Small" TextColor="#640689"/>
+        <Label Text="Product Type:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.ProductType}"  FontSize="Small" TextColor="#640689"/>
+        <Label Text="Cost:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.Cost}"  FontSize="Small" TextColor="#640689"/>
+        <Label Text="Minimum Set Price:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.MinimumSetPrice}"  FontSize="Small" TextColor="#640689"/>
+        <Label Text="FullRetailPrice:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.FullRetailPrice}"  FontSize="Small" TextColor="#640689"/>
+        </StackLayout>
+
+        <StackLayout x:Name="PhoneStackView" Orientation="Vertical"  IsVisible="{Binding IsPhone}">
+        <Label Text="Manufacturer:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.Manufacturer}" FontSize="Small" TextColor="#640689"/>
+        </StackLayout>
+        <StackLayout x:Name="AccessoryStackView" Orientation="Vertical" IsVisible="{Binding IsAccessory}">
+        <Label Text="Accessory Type:" FontSize="Medium" TextColor="#ea0a8e" />
+        <Label Text="{Binding Product.AccessoryItemType}" FontSize="Small" TextColor="#640689"/>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>
