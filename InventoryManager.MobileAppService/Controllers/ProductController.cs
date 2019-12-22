@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InventoryManager.MobileAppService.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryManager.MobileAppService.Controllers
 {
@@ -18,13 +19,16 @@ namespace InventoryManager.MobileAppService.Controllers
             ProductRepository = productRepository;
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Product>> List()
         {
             return ProductRepository.GetAll().ToList();
         }
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -37,7 +41,8 @@ namespace InventoryManager.MobileAppService.Controllers
 
             return item;
         }
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -50,6 +55,8 @@ namespace InventoryManager.MobileAppService.Controllers
             return CreatedAtAction(nameof(GetItem), new { product.Id }, product);
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,6 +73,8 @@ namespace InventoryManager.MobileAppService.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -33,6 +33,7 @@ namespace InventoryManager.MobileAppService.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<User>> List()
@@ -53,6 +54,8 @@ namespace InventoryManager.MobileAppService.Controllers
             return user;
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -62,6 +65,8 @@ namespace InventoryManager.MobileAppService.Controllers
             return CreatedAtAction(nameof(GetUser), new { user.UserName }, user);
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -78,6 +83,8 @@ namespace InventoryManager.MobileAppService.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

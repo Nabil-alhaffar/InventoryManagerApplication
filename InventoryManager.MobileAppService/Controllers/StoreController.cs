@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InventoryManager.Models;
 using InventoryManager.MobileAppService.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryManager.MobileAppService.Controllers
 {
@@ -20,12 +21,16 @@ namespace InventoryManager.MobileAppService.Controllers
             StoreRepository = storeRepository;
             StockRepository = stockRepository;
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Store>> List()
         {
             return StoreRepository.GetAll().ToList();
         }
+
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -38,6 +43,7 @@ namespace InventoryManager.MobileAppService.Controllers
 
             return store;
         }
+  
         [HttpGet("storeName")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,6 +56,8 @@ namespace InventoryManager.MobileAppService.Controllers
 
             return store;
         }
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -59,7 +67,8 @@ namespace InventoryManager.MobileAppService.Controllers
             return CreatedAtAction(nameof(GetStore), new { store.StoreId }, store);
         }
 
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -76,23 +85,30 @@ namespace InventoryManager.MobileAppService.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet("{id}/stocks/PhoneItems")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult <IEnumerable<Stock>> GetPhoneStocks(int id) =>  StockRepository.GetAllPhoneStocks(id).ToList();
-        
+
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet("{id}/stocks/AccessoryItems")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<Stock>> GetAccessoryStocks(int id) => StockRepository.GetAllAccessoriesStocks(id).ToList();
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet("{id}/stocks/Quantity")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<int> GetStocksCount([FromBody]int id, [FromRoute]Product product) => StockRepository.GetProductCount(id, product.Id);
-        
 
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPost("{id}/stocks")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -116,7 +132,8 @@ namespace InventoryManager.MobileAppService.Controllers
             else
                 return BadRequest("invalid modelstate");
         }
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPost("{id}/stocks/subtract/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -142,7 +159,8 @@ namespace InventoryManager.MobileAppService.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpPost("{id}/stocks/reconcile/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -167,7 +185,8 @@ namespace InventoryManager.MobileAppService.Controllers
                 return BadRequest("Invalid ModelState");
             }
         }
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet("{id}/stocks")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InventoryManager.MobileAppService.Models;
+using Microsoft.AspNetCore.Authorization;
+
 namespace InventoryManager.MobileAppService.Controllers
 {
     [Route("api/stocks")]
@@ -18,6 +20,8 @@ namespace InventoryManager.MobileAppService.Controllers
             SerialNumberRepository = serialNumberRepository;
         }
 
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "DistrictManager")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Stock>> ListAllStocks()
@@ -36,6 +40,7 @@ namespace InventoryManager.MobileAppService.Controllers
 
             return stock;
         }
+
 
         [HttpPost("stock")]
         [ProducesResponseType(StatusCodes.Status201Created)]
